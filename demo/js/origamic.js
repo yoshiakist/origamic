@@ -266,6 +266,10 @@ var Origamic = function(param){
 
                         cells[m].style.width = cellWidth + 'px';
                         cells[m].style.left = leftTotal + 'px';
+                        cells[m].style.webkitTransformOrigin = originX + '% 0 0';
+                        cells[m].style.mozTransformOrigin = originX + '% 0 0';
+                        cells[m].style.msTransformOrigin = originX + '% 0 0';
+                        cells[m].style.oTransformOrigin = originX + '% 0 0';
                         cells[m].style.transformOrigin = originX + '% 0 0';
                         cells[m].style.zIndex = zIndex;
                         

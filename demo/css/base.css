@@ -190,14 +190,21 @@ img {
   width: 100%;
 }
 .origamic_container .origamic_row.whole_shadow .origamic_cell {
-  transform: rotateY(30deg);
   box-shadow: 0 0 50px 50px rgba(0, 0, 0, 0.2);
 }
 .origamic_container .origamic_row.whole_shadow .origamic_cell.cell_left {
-  transform-origin: 100%;
+  -webkit-transform-origin: 100% 0 0;
+  -moz-transform-origin: 100% 0 0;
+  -ms-transform-origin: 100% 0 0;
+  -o-transform-origin: 100% 0 0;
+  transform-origin: 100% 0 0;
 }
 .origamic_container .origamic_row.whole_shadow .origamic_cell.cell_right {
-  transform-origin: 0%;
+  -webkit-transform-origin: 0% 0 0;
+  -moz-transform-origin: 0% 0 0;
+  -ms-transform-origin: 0% 0 0;
+  -o-transform-origin: 0% 0 0;
+  transform-origin: 0% 0 0;
 }
 
 .origamic_controller {
