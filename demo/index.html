@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+
+<!--[if lt IE 7 ]> <html class="ie6" lang="ja"><![endif]-->
+<!--[if IE 7 ]> <html class="ie7" lang="ja"><![endif]-->
+<!--[if IE 8 ]> <html class="ie8" lang="ja"><![endif]-->
+<!--[if IE 9 ]> <html class="ie9" lang="ja"><![endif]-->
+<!--[if (gt IE 9) | !(IE) ]><!-->
+<!-->
+<html class="" lang="ja"><!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width">-->
+    <title>origamic.js DEMO</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.min.css" media="all" />
+</head>
+
+<body>
+
+
+<header class="header">
+    <h1 class="header_logo"><img src="./images/origamic-logo.svg" alt="origamic.js"/></h1>
+    <nav class="header_nav">
+        <h2><a class="imglink" href="https://github.com/yoshiakist/origamic/" target="_blank"><img src="./images/icon_github.png" alt="git repository"/></a></h2>
+    </nav>
+</header>
+
+<main class="wrapper">
+
+    <div class="origamic_container" id="container1"></div>
+    <div class="origamic_controller">
+        <div class="origamic_controll_bar" id="bar1">
+            <div class="origamic_controll_tab" id="tab1"></div>
+        </div>
+    </div>
+
+    <div class="origamic_container" id="container2"></div>
+    <div class="origamic_controller">
+        <div class="origamic_controll_bar" id="bar2">
+            <div class="origamic_controll_tab" id="tab2"></div>
+        </div>
+    </div>
+
+    <div class="origamic_container" id="container3"></div>
+    <div class="origamic_controller">
+        <div class="origamic_controll_bar" id="bar3">
+            <div class="origamic_controll_tab" id="tab3"></div>
+        </div>
+    </div>
+</main>
+
+<footer>
+
+</footer>
+
+<script src="./js/origamic.js"></script>
+<script>
+    origamic1 = new Origamic({
+        selector: '#container1',
+        controlTab: '#tab1',
+        controlBar: '#bar1',
+        initialAngle: 35,
+        unitWidth: 40,
+        unitHeight: 35,
+        centerLine: 10,
+        perspective: 1000,
+        blocks: [
+            [10, 10],
+            [10, 10],
+            [10, 10],
+            [10, 10],
+            [6, 1, 4, 9],
+            [6, 2, 4, 8],
+            [6, 3, 4, 7],
+            [6, 4, 4, 6],
+            [10, 10],
+            [10, 10],
+            [10, 10],
+            [10, 10]
+        ],
+        colorLeft: {r:255, g:255, b:255},
+        colorRight: {r:230, g:230, b:230},
+        colorDiff: 10,
+        wholeShadow: true
+    });
+
+    origamic2 = new Origamic({
+        selector: '#container2',
+        controlTab: '#tab2',
+        controlBar: '#bar2',
+        initialAngle: 45,
+        unitWidth: 20,
+        unitHeight: 15,
+        centerLine: 20,
+        perspective: 1000,
+        blocks: [
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [19, 4, 1, 16],
+            [18, 4, 2, 16],
+            [17, 4, 1, 2, 2, 14],
+            [16, 4, 2, 2, 2, 14],
+            [15, 4, 1, 2, 2, 2, 2, 12],
+            [14, 4, 2, 2, 2, 2, 2, 12],
+            [13, 4, 1, 2, 2, 2, 2, 2, 2, 10],
+            [12, 4, 2, 2, 2, 2, 2, 2, 2, 10],
+            [8, 4, 4, 2, 2, 2, 2, 2, 2, 2, 2, 8],
+            [8, 5, 4, 1, 2, 2, 2, 2, 2, 2, 2, 8],
+            [8, 6, 4, 2, 2, 2, 2, 2, 4, 8],
+            [8, 7, 4, 1, 2, 2, 2, 2, 4, 8],
+            [8, 8, 4, 2, 2, 2, 6, 8],
+            [8, 9, 4, 1, 2, 2, 6, 8],
+            [8,10, 4, 2, 8, 8],
+            [8,11, 4, 1, 8, 8],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20]
+        ],
+        colorLeft: {r:255, g:255, b:255},
+        colorRight: {r:230, g:230, b:230},
+        colorDiff: 6,
+        bgImage: './images/bg01.jpg',
+        shadowDiff: 0.4,
+        wholeShadow: true
+    });
+
+
+    var origamic3 = new Origamic({
+        selector: '#container3',
+        controlTab: '#tab3',
+        controlBar: '#bar3',
+        initialAngle: 35,
+        unitWidth: 20,
+        unitHeight: 15,
+        centerLine: 20,
+        perspective: 1000,
+        blocks: [
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [15, 6, 5, 14],
+            [12, 3, 3, 3, 1, 1, 4, 13],
+            [12, 3, 4, 4, 1, 1, 3, 12],
+            [12, 3, 1, 1, 3, 3, 1, 1, 1, 1, 2, 11],
+            [10, 1, 2, 2, 1, 1, 4, 4, 1, 1, 1, 1, 1, 10],
+            [10, 1, 3, 3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 10],
+            [10, 1, 1, 1, 2, 2, 1, 1, 4, 4, 1, 1, 1, 10],
+            [10, 1, 1, 1, 3, 3, 1, 1, 3, 3, 1, 1, 1, 10],
+            [11, 2, 1, 1, 2, 2, 1, 1, 4, 4, 1, 10],
+            [11, 2, 1, 1, 3, 3, 1, 1, 3, 3, 1, 10],
+            [12, 3, 1, 1, 2, 2, 1, 1, 4, 13],
+            [12, 3, 1, 1, 3, 3, 1, 1, 3, 12],
+            [13, 4, 1, 1, 2, 2, 1, 1, 3, 12],
+            [10, 1, 3, 3, 1, 1, 3, 3, 1, 1, 2, 11],
+            [10, 1, 4, 4, 1, 1, 2, 2, 1, 1, 2, 11],
+            [10, 1, 1, 1, 3, 3, 1, 1, 3, 3, 1, 1, 1, 10],
+            [10, 1, 1, 1, 4, 4, 1, 1, 2, 2, 1, 1, 1, 10],
+            [10, 1, 1, 1, 1, 1, 3, 3, 1, 1, 3, 3, 1, 10],
+            [10, 1, 1, 1, 1, 1, 4, 4, 1, 1, 2, 2, 1, 10],
+            [11, 2, 1, 1, 1, 1, 3, 3, 1, 1, 3, 12],
+            [12, 3, 1, 1, 4, 4, 3, 12],
+            [13, 4, 1, 1, 3, 3, 3, 12],
+            [14, 5, 6, 15],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20],
+            [20, 20]
+        ],
+//        colorLeft: {r:255, g:255, b:255},
+//        colorRight: {r:230, g:230, b:230},
+//        colorDiff: 8,
+        bgImage: './images/bg02.jpg',
+        shadowDiff: 0.4,
+        wholeShadow: true
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "origamic.js",
+  "version": "0.0.1",
+  "description": "a JavaScript plug-in for creating beautiful Origamic Architecture on the Web.",
+  "main": "Gruntfile.coffee",
+  "scripts": {
+  },
+  "repository": "",
+  "author": "yoshiakist",
+  "license": "BSD",
+  "devDependencies": {
+
+  }
+}

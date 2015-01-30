@@ -1,0 +1,221 @@
+@charset "UTF-8";
+/* import compass
+=============================*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* sizing
+=============================*/
+/* media query
+=============================*/
+/* color palette
+=============================*/
+/* font style
+=============================*/
+/* load font family
+=============================*/
+/* Hover Effect
+=============================*/
+.imglink img {
+  -webkit-transition: 0.6s;
+  -moz-transition: 0.6s;
+  -o-transition: 0.6s;
+  transition: 0.6s;
+}
+.imglink:hover img {
+  opacity: 0.4;
+}
+
+/* Hidden text
+=============================*/
+.xs {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/* CSS Sprite mixin
+=============================*/
+/* base style
+=============================*/
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  width: 100%;
+  min-width: 1040px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 671px;
+  position: relative;
+  overflow: auto;
+  color: #333333;
+  font-size: 62.5%;
+  line-height: 1.8;
+  font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Verdana, sans-serif;
+  background: #eaeaea;
+}
+
+a {
+  color: #898989;
+  text-decoration: none;
+}
+
+p {
+  text-align: justify;
+}
+
+hr {
+  display: none;
+}
+
+img {
+  border: none;
+  line-height: 0;
+  vertical-align: bottom;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* common style
+=============================*/
+.wrapper {
+  width: 1040px;
+  margin: 0 auto;
+  padding: 0 30px;
+  overflow: hidden;
+  *zoom: 1;
+}
+
+.clearfix {
+  overflow: hidden;
+  *zoom: 1;
+  position: relative;
+}
+
+.origamic_container {
+  width: 800px;
+  margin: 50px auto 0;
+  padding: 0;
+  -webkit-perspective: 2000px;
+  -moz-perspective: 2000px;
+  -ms-perspective: 2000px;
+  -o-perspective: 2000px;
+  perspective: 2000px;
+  -webkit-perspective-origin: top;
+  -moz-perspective-origin: top;
+  -ms-perspective-origin: top;
+  -o-perspective-origin: top;
+  perspective-origin: top;
+}
+.origamic_container .origamic_row {
+  position: relative;
+  margin-top: -1px;
+}
+.origamic_container .origamic_row .origamic_cell {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+.origamic_container .origamic_row .origamic_cell.cell_left {
+  background: #fafafa;
+}
+.origamic_container .origamic_row .origamic_cell.cell_right {
+  background: #eaeaea;
+}
+.origamic_container .origamic_row.whole_shadow {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 100%;
+}
+.origamic_container .origamic_row.whole_shadow .origamic_cell {
+  transform: rotateY(30deg);
+  box-shadow: 0 0 50px 50px rgba(0, 0, 0, 0.2);
+}
+.origamic_container .origamic_row.whole_shadow .origamic_cell.cell_left {
+  transform-origin: 100%;
+}
+.origamic_container .origamic_row.whole_shadow .origamic_cell.cell_right {
+  transform-origin: 0%;
+}
+
+.origamic_controller {
+  margin: 200px 150px 350px;
+}
+.origamic_controller .origamic_controll_bar {
+  position: relative;
+  height: 4px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.3));
+}
+.origamic_controller .origamic_controll_tab {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #dddddd;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}

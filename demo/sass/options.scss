@@ -1,0 +1,75 @@
+//
+// GLOBAL MIXIN AND STYLES
+//
+
+@import "compass/css3";
+@import "compass/utilities/general/clearfix";
+
+
+
+
+/* Hover Effect
+=============================*/
+.imglink{
+    img{
+        @include transition(0.6s);
+    }
+    &:hover{
+        img{
+            opacity: 0.4;
+        }
+    }
+}
+
+
+
+
+/* Hidden text
+=============================*/
+.xs{
+    position: absolute!important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+}
+
+
+
+
+/* CSS Sprite mixin
+=============================*/
+//$sprites: sprite-map("sprites/*.png");
+//$sprites-img: sprite-url($sprites);
+//@mixin sprite-background($name) {
+//    background-image: $sprites-img;
+//    background-repeat: no-repeat;
+//    display: block;
+//    height: image-height(sprite-file($sprites, $name)) / 2;
+//    width: image-width(sprite-file($sprites, $name)) / 2;
+//    $ypos: round(nth(sprite-position($sprites, $name), 2) / 2);
+//    background-position: 0 $ypos;
+//    @include background-size(image-width('sprites.png')/2 auto);
+//
+//}
+//@mixin after-icon($name, $right, $top) {
+//    position: relative;
+//    &:after{
+//        content: ' ';
+//        position: absolute;
+//        right: $right;
+//        top: $top;
+//        @include sprite-background($name);
+//    }
+//}
+//@mixin before-icon($name, $left, $top) {
+//    position: relative;
+//    &:before{
+//        content: ' ';
+//        position: absolute;
+//        left: $left;
+//        top: $top;
+//        @include sprite-background($name);
+//    }
+//}
+

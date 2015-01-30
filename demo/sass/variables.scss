@@ -1,0 +1,49 @@
+//
+// GLOBAL STYLE VARIABLES
+//
+
+
+
+/* sizing
+=============================*/
+$wrapper-width: 1040px;
+
+
+
+/* media query
+=============================*/
+$pc-small: "only screen and (max-width:960px)";
+$pc-middle: "only screen and (min-width:961px) and (max-width: 1140px)";
+$pc-large: "only screen and (min-width:1141px)";
+
+
+/* color palette
+=============================*/
+$color-bg: #eaeaea;
+$color-text: #333333;
+$color-bright-blue: #1876CD;
+$color-accent: #0065c5;
+$color-link: #898989;
+
+
+
+
+/* font style
+=============================*/
+$font-gothic: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, Verdana, sans-serif;
+
+
+
+
+/* load font family
+=============================*/
+//@font-face {
+//    font-family: "FontName";
+//    font-style: normal;
+//    src: url('/font/FontName.eot');
+//    src: local('☺'),
+//    url('/font/FontName.eot?#iefix') format('embedded-opentype'),
+//    url('/font/FontName.woff') format('woff'),
+//    url('/font/FontName.otf') format('opentype'),
+//    url('/font/FontName.ttf') format('truetype');
+//}

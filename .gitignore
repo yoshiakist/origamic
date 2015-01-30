@@ -1,0 +1,25 @@
+### Ignore node_modules
+/node_modules/
+ 
+### MAC
+.DS_Store
+ 
+### Windows
+Thumbs.db
+ 
+### Eclipse project files
+/.cache
+.project
+/.settings
+.buildpath
+
+### PhpStorm project files
+.idea/
+
+### SASS
+.sass-cache
+
+### .htaccess
+.htaccess
+.htpasswd
+php.cgi

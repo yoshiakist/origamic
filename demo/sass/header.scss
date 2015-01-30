@@ -1,0 +1,25 @@
+//
+// HEADER STYLE
+//
+
+@import "variables";
+@import "options";
+
+
+.header{
+    position: relative;
+    background: white;
+    margin-bottom: 100px;
+    padding: 15px;
+
+    .header_logo{
+        width: 300px;
+    }
+
+    .header_nav{
+        position: absolute;
+        top: 25px;
+        right: 25px;
+    }
+
+}
