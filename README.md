@@ -7,9 +7,13 @@ origamic.js は折り紙建築を生成して動かすためのJavaScriptプラ�
   <img src="http://cobitoworks.jp/origamic/yoshiakist_origamic_architecture.jpg" alt="Origamic Architecture made by Yoshiakist" width="300"/>
 </p>
 
+
+
 ## Demo 
 
-[Live Demo](http://cobitoworks.jp/origamic/)
+[Live Demo (only for PC Browser)](http://cobitoworks.jp/origamic/)
+
+
 
 ## Usage
 
@@ -48,13 +52,18 @@ origamic.js は折り紙建築を生成して動かすためのJavaScriptプラ�
 ```
 
 
+
 ## Documentation
 
 準備中...
 
+
+
 ## License
 
 MIT
+
+
 
 ## Author
 
