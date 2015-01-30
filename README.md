@@ -1,13 +1,14 @@
 # origamic.js
 
-A JavaScript plug-in for generating Origamic Architecture.
+A JavaScript plug-in for generating Origamic Architecture.  
+
 origamic.js は折り紙建築を生成して動かすためのJavaScriptプラグインです。
 
 ![Origamic Architecture](http://cobitoworks.jp/origamic/yoshiakist_origamic_architecture.jpg)
 
 ## Demo 
 
-[Live Demo](http://cobitoworks/origamic/)
+[Live Demo: cobitoworks.jp/origamic/](http://cobitoworks.jp/origamic/)
 
 ## Usage
 
