@@ -199,9 +199,6 @@ var Origamic = function(param){
                 var shadowHeight = unitHeight * ( row*1 + 1 ) - row*1 - 5;
                 var wholeShadowStyle = 'height:' + shadowHeight + 'px;';
                 
-                console.log(row);
-                console.log(unitHeight);
-                console.log(shadowHeight);
                 html += '<div class="origamic_row whole_shadow" style="' + wholeShadowStyle + '">';
                 html += '<div class="origamic_cell cell_left cell_shadow"></div>';
                 html += '<div class="origamic_cell cell_right cell_shadow"></div>\n';
