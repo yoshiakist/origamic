@@ -47,8 +47,17 @@ var Origamic = function(param){
     };
 
 
+    // name the vendor prefix
+    var vendorPrefix = (/webkit/i).test(navigator.appVersion) ? 'webkit' :
+                        (/firefox/i).test(navigator.userAgent) ? 'moz' :
+                        (/trident/i).test(navigator.userAgent) ? 'ms' :
+                        'opera' in window ? 'O' : '';
+
+
     /** @constructor */
     (function (){
+
+
 
 
         //
@@ -63,7 +72,7 @@ var Origamic = function(param){
         if(!container){ return; }
 
         if(glob.param.perspective){
-            container.style.perspective = param.perspective + 'px';
+            _setStyleWithVendorPrefix(container, 'perspective', (param.perspective + 'px'));
         }
 
         _setupControl();
@@ -71,7 +80,13 @@ var Origamic = function(param){
         _setupElements();
 
         for ( var i = 0; i < glob.el.paperRows.length; i++ ) {
-            glob.el.paperRows.item( i ).style.height = unitHeight + 'px';
+
+            if (param.wholeShadow && i > glob.el.paperRows.length - 2) {
+
+            } else {
+                glob.el.paperRows.item( i ).style.height = unitHeight + 'px';
+            }
+
         }
 
         _setTabPosition( angle );
@@ -181,12 +196,9 @@ var Origamic = function(param){
 
             // set whole shadow
             if ( param.wholeShadow === true) {
-                var shadowHeight = unitHeight * ( row*1 ) - 15;
-                var wholeShadowStyle = 'height:' + shadowHeight + 'px!important;';
+                var shadowHeight = unitHeight * ( row*1 + 1 ) - row*1 - 5;
+                var wholeShadowStyle = 'height:' + shadowHeight + 'px;';
                 
-                console.log(row);
-                console.log(unitHeight);
-                console.log(wholeShadowStyle);
                 html += '<div class="origamic_row whole_shadow" style="' + wholeShadowStyle + '">';
                 html += '<div class="origamic_cell cell_left cell_shadow"></div>';
                 html += '<div class="origamic_cell cell_right cell_shadow"></div>\n';
@@ -266,13 +278,11 @@ var Origamic = function(param){
 
                         cells[m].style.width = cellWidth + 'px';
                         cells[m].style.left = leftTotal + 'px';
-                        cells[m].style.webkitTransformOrigin = originX + '% 0 0';
-                        cells[m].style.mozTransformOrigin = originX + '% 0 0';
-                        cells[m].style.msTransformOrigin = originX + '% 0 0';
-                        cells[m].style.oTransformOrigin = originX + '% 0 0';
-                        cells[m].style.transformOrigin = originX + '% 0 0';
                         cells[m].style.zIndex = zIndex;
-                        
+
+                        _setStyleWithVendorPrefix(cells[m], 'transformOrigin', (originX + '% 0 0'));
+
+
                         cellCnt ++;
                     }
 
@@ -333,27 +343,23 @@ var Origamic = function(param){
             for (var i = 0; i < glob.el.lengthPaperLeft; i++ ){
                 _setRotate(glob.el.paperLeft.item(i), angleStyleStrLeft);
                 _setRotate(glob.el.paperRight.item(i), angleStyleStrRight);
-                
-                
-                // for whole shadow
-                //if(glob.param.wholeShadow == true && i == glob.el.lengthPaperLeft - 1){
-                //    angleStyleStrLeft = 'rotateY(' + (angle / 2)  + 'deg)' ;
-                //    angleStyleStrRight= 'rotateY( -' + (angle / 2)  + 'deg)' ;
-                //    _setRotate(glob.el.paperLeft.item(i), angleStyleStrLeft);
-                //    _setRotate(glob.el.paperRight.item(i), angleStyleStrRight);
-                //}
             }
         }
 
 
 
 
-        function _setRotate (dom, s){
-            dom.style.webkitTransform = s;
-            dom.style.mozTransform = s;
-            dom.style.msTransform = s;
-            dom.style.oTransform = s;
-            dom.style.transform = s;
+        function _setRotate (el, s){
+            _setStyleWithVendorPrefix(el, 'transform', s);
+        }
+
+
+
+
+
+        function _setStyleWithVendorPrefix(el, styleName, styleStr){
+            el.style[('-' + vendorPrefix + '-' + styleName)] = styleStr;
+            el.style[styleName] = styleStr;
         }
 
 
@@ -403,6 +409,7 @@ var Origamic = function(param){
                 var a = _offsetXToAngle(e.clientX);
                 _setAngle(a, glob.param);
                 _setTabPosition(a);
+                
             }
 
             function dragEndFunc(e){
