@@ -72,9 +72,12 @@ img { border: none; line-height: 0; vertical-align: bottom; }
     @include perspective(2000px);
     @include perspective-origin(top);
 
+
     .origamic_row{
         position: relative;
         margin-top: -1px;
+//        @include perspective(2000px);
+//        @include perspective-origin(top);
 
         .origamic_cell{
             position: absolute;
@@ -83,9 +86,17 @@ img { border: none; line-height: 0; vertical-align: bottom; }
 
             &.cell_left{
                 background: #fafafa;
+                &:first-child{
+//                    left: 0!important;
+//                    @include transform-origin(100%, 0, 0);
+                }
             }
             &.cell_right{
                 background: #eaeaea;
+                &:last-child{
+//                    right: 0!important;
+//                    @include transform-origin(0%, 0, 0);
+                }
             }
         }
 
