@@ -54,10 +54,9 @@ var Origamic = function(param){
                         'opera' in window ? 'O' : '';
 
 
+
     /** @constructor */
     (function (){
-
-
 
 
         //
@@ -81,9 +80,9 @@ var Origamic = function(param){
 
         for ( var i = 0; i < glob.el.paperRows.length; i++ ) {
 
-            if (param.wholeShadow && i > glob.el.paperRows.length - 2) {
+            if (param.wholeShadow && i > glob.el.paperRows.length - 2) { // paper rows
 
-            } else {
+            } else { // shadow rows
                 glob.el.paperRows.item( i ).style.height = unitHeight + 'px';
             }
 
@@ -160,13 +159,13 @@ var Origamic = function(param){
 
                         var shadowDiffInitial = (cell % 2)? 0.15 : 0;
                         var shadowStyle = 'linear-gradient( to ' + ((cell % 2)? 'left':'right') + ','
-                                        + ' rgba(0, 0, 0, ' + shadowDiffInitial + '),'
-                                        + ' rgba(0, 0, 0, ' + (shadowDiffInitial + (shadowDiff * blocks[row][cell] / param.centerLine)) + ') ), ';
+                            + ' rgba(0, 0, 0, ' + shadowDiffInitial + '),'
+                            + ' rgba(0, 0, 0, ' + (shadowDiffInitial + (shadowDiff * blocks[row][cell] / param.centerLine)) + ') ), ';
 
                         style = 'background-image:' + shadowStyle
-                              + ' url('+ param.bgImage +');'
-                              + 'background-position: 0 -' + (param.unitHeight * row + 1 ) + 'px;';
-                        
+                        + ' url('+ param.bgImage +');'
+                        + 'background-position: 0 -' + (param.unitHeight * row + 1 ) + 'px;';
+
                     } else {
 
                         if ( cell % 2 ) {
@@ -198,7 +197,7 @@ var Origamic = function(param){
             if ( param.wholeShadow === true) {
                 var shadowHeight = unitHeight * ( row*1 + 1 ) - row*1 - 5;
                 var wholeShadowStyle = 'height:' + shadowHeight + 'px;';
-                
+
                 html += '<div class="origamic_row whole_shadow" style="' + wholeShadowStyle + '">';
                 html += '<div class="origamic_cell cell_left cell_shadow"></div>';
                 html += '<div class="origamic_cell cell_right cell_shadow"></div>\n';
@@ -224,110 +223,65 @@ var Origamic = function(param){
 
                 zIndex --;
 
-                var leftArr = [];
-                var rightArr = [];
+                var leftArr = [],
+                    rightArr = [],
+                    cell;
 
-                for (var cell in blocks[row]) if (blocks[row].hasOwnProperty(cell)) {
+                // save all block length divided into right and left side
+                // for calculate values of 'left' and 'originX'.
+                for (cell in blocks[row]) if (blocks[row].hasOwnProperty(cell)) {
                     if(cell % 2){
                         rightArr.push(blocks[row][cell] * unitWidth);
                     } else {
                         leftArr.push(blocks[row][cell] * unitWidth);
                     }
                 }
-                cell = 0;
 
-                var theRow = glob.el.paperRows.item(row);
-                var cells = theRow.childNodes;
-                var cellCnt = 0;
-                for(var m = 0; m < cells.length; m++){
+                // calculate style values and set them
+                for (cell in blocks[row]) if (blocks[row].hasOwnProperty(cell)) {
 
+                    var cellWidth = blocks[row][cell] * unitWidth;
+                    var originX = 0,
+                        leftTotal = 0,
+                        passedTotal = 0,
+                        restTotal = 0;
+                    
+                    if ( !((cell*1) % 2) ) { // left side cells
 
-                    if (cells[m].nodeName === 'DIV'){
-
-                        var cellWidth = blocks[row][cellCnt] * unitWidth;
-                        var cellDirection = (cellCnt % 2) ? 'cell_right' : 'cell_left';
-
-                        var originX = 0,
-                            leftTotal = 0,
-                            passedTotal = 0,
-                            restTotal = 0;
-
-                        if ( cellDirection == 'cell_left' ){
-
-                            for( i = 0; i < cellCnt/2; i++){
-                                passedTotal += rightArr[i];
-                            }
-                            for( var k = cellCnt/2 + 1; k < rightArr.length; k++){
-                                restTotal += leftArr[k];
-                            }
-                            originX = (passedTotal + restTotal + cellWidth) / cellWidth * 100;
-                            leftTotal = xCenterLine + 2 * passedTotal * Math.cos(angle * Math.PI / 180) - (cellWidth + passedTotal + restTotal);
-
-                        } else if ( cellDirection == 'cell_right' ) {
-
-                            for( i = 0; i < (cellCnt + 1)/2 - 1; i++){
-                                passedTotal += rightArr[i];
-                            }
-                            for( k = (cellCnt + 1)/2; k < leftArr.length; k++){
-                                restTotal += leftArr[k];
-                            }
-                            originX = - (passedTotal + restTotal) / cellWidth * 100;
-                            leftTotal = xCenterLine - 2 * restTotal * Math.cos(angle * Math.PI / 180) + (passedTotal + restTotal);
-
+                        for (i = 0; i < (cell*1) / 2; i++) {
+                            passedTotal += rightArr[i];
                         }
+                        for (var k = (cell*1) / 2 + 1; k < rightArr.length; k++) {
+                            restTotal += leftArr[k];
+                        }
+                        originX = (passedTotal + restTotal + cellWidth) / cellWidth * 100;
+                        leftTotal = xCenterLine + 2 * passedTotal * Math.cos(angle * Math.PI / 180) - (cellWidth + passedTotal + restTotal);
 
-                        cells[m].style.width = cellWidth + 'px';
-                        cells[m].style.left = leftTotal + 'px';
-                        cells[m].style.zIndex = zIndex;
+                    } else { // right side cells
 
-                        _setStyleWithVendorPrefix(cells[m], 'transformOrigin', (originX + '% 0 0'));
+                        for( i = 0; i < ((cell*1) + 1)/2 - 1; i++){
+                            passedTotal += rightArr[i];
+                        }
+                        for( k = ((cell*1) + 1)/2; k < leftArr.length; k++){
+                            restTotal += leftArr[k];
+                        }
+                        originX = - (passedTotal + restTotal) / cellWidth * 100;
+                        leftTotal = xCenterLine - 2 * restTotal * Math.cos(angle * Math.PI / 180) + (passedTotal + restTotal);
 
-
-                        cellCnt ++;
                     }
+
+                    var theCell = glob.el.paperRows.item(row).children[cell];
+                    theCell.style.width = cellWidth + 'px';
+                    theCell.style.left = leftTotal + 'px';
+                    theCell.style.zIndex = zIndex;
+                    _setStyleWithVendorPrefix(theCell, 'transformOrigin', (originX + '% 0 0'));
 
                 }
 
             }
-            
+
             if (param.wholeShadow == true) {
-                
-                var shadowRow = glob.el.paperRows.item(row * 1 + 1);
-                var shadowCells = shadowRow.childNodes;
-                cellCnt = 0;
-
-                var shadowLength,
-                    shadowAlpha,
-                    shadowY;
-                for(var m = 0; m < shadowCells.length; m++){
-                    if (shadowCells[m].nodeName === 'DIV') {
-
-                        shadowY = (50 * angle/90);
-                        shadowLength = (angle * 50/90) + 5;
-                        shadowAlpha = - (angle * 0.45/90) + 0.5;
-
-
-                        if (cellCnt % 2) { // right side shadow
-
-                            shadowCells[m].style.boxShadow = '0 0 ' + shadowLength + 'px ' + shadowLength +'px rgba(0, 0, 0, ' + shadowAlpha + ')';
-                            shadowCells[m].style.background = 'rgba(0, 0, 0, ' + (shadowAlpha) +')';
-                            shadowCells[m].style.width = xCenterLine - (angle/90) + 'px';
-                            shadowCells[m].style.left = xCenterLine + (shadowLength * Math.cos(angle * Math.PI / 180)) -1 + 'px';
-                            shadowCells[m].style.top = shadowY + 'px';
-
-                        } else { // left side shadow
-
-                            shadowCells[m].style.boxShadow = '0 0 ' + shadowLength + 'px ' + shadowLength +'px rgba(0, 0, 0, ' + shadowAlpha + ')';
-                            shadowCells[m].style.background = 'rgba(0, 0, 0, ' + shadowAlpha + ' )';
-                            shadowCells[m].style.width = xCenterLine - (angle/90) + 'px';
-                            shadowCells[m].style.right = xCenterLine + (shadowLength * Math.cos(angle * Math.PI / 180)) -1 + 'px';
-                            shadowCells[m].style.top = shadowY + 'px';
-
-                        }
-
-                        cellCnt ++;
-                    }
-                }
+                _setShadowStyle (angle, xCenterLine);
             }
 
         }
@@ -335,14 +289,46 @@ var Origamic = function(param){
 
 
 
+        function _setShadowStyle (angle, xCenterLine) {
+
+            var shadowRow = glob.el.paperRows.item(glob.el.paperRows.length - 1);
+            var shadowCells = shadowRow.childNodes;
+            var cellCnt = 0;
+
+            var shadowLength,
+                shadowAlpha,
+                shadowY;
+
+            for(var j = 0; j < shadowCells.length; j++){
+                if (shadowCells[j].nodeName === 'DIV') {
+
+                    shadowY = (50 * angle/90);
+                    shadowLength = (angle * 50/90) + 5;
+                    shadowAlpha = - (angle * 0.45/90) + 0.5;
+
+                    shadowCells[j].style.boxShadow = '0 0 ' + shadowLength + 'px ' + shadowLength +'px rgba(0, 0, 0, ' + shadowAlpha + ')';
+                    shadowCells[j].style.background = 'rgba(0, 0, 0, ' + (shadowAlpha) +')';
+                    shadowCells[j].style.width = xCenterLine - (angle/90) + 'px';
+                    shadowCells[j].style.top = shadowY + 'px';
+                    shadowCells[j].style[((cellCnt % 2) ? 'left' : 'right')] = xCenterLine + (shadowLength * Math.cos(angle * Math.PI / 180)) -1 + 'px';
+
+                    cellCnt ++;
+                }
+            }
+        }
+
+
+
+
         function _setRotateStyle (angle) {
 
-            var angleStyleStrLeft = 'rotateY(' + angle  + 'deg)' ;
-            var angleStyleStrRight= 'rotateY( -' + angle  + 'deg)' ;
+            var angleStyleStrLeft = 'rotateY(' + angle  + 'deg)';
+            var angleStyleStrRight= 'rotateY( -' + angle  + 'deg)';
 
-            for (var i = 0; i < glob.el.lengthPaperLeft; i++ ){
-                _setRotate(glob.el.paperLeft.item(i), angleStyleStrLeft);
-                _setRotate(glob.el.paperRight.item(i), angleStyleStrRight);
+            var el = glob.el;
+            for (var i = 0; i < el.lengthPaperLeft; i++ ){
+                _setRotate(el.paperLeft.item(i), angleStyleStrLeft);
+                _setRotate(el.paperRight.item(i), angleStyleStrRight);
             }
         }
 
@@ -393,7 +379,7 @@ var Origamic = function(param){
 
             return ( x - offset )/ wBar * 90;
         }
-        
+
 
 
 
@@ -409,7 +395,7 @@ var Origamic = function(param){
                 var a = _offsetXToAngle(e.clientX);
                 _setAngle(a, glob.param);
                 _setTabPosition(a);
-                
+
             }
 
             function dragEndFunc(e){
