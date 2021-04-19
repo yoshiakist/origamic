@@ -9,12 +9,6 @@ origamic.js は折り紙建築を生成して動かすためのJavaScriptプラ�
 
 
 
-## Demo 
-
-[Live Demo (only for PC Browser)](http://cobitoworks.jp/origamic/)
-
-
-
 ## Usage
 
 ```html
